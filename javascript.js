@@ -34,7 +34,15 @@ function gameRound(playerSelection, computerSelection){
 
 
 function endScore(computerScore, playerScore) {
+    if (playerScore > computerScore) {
+        console.log("You Win!");
+    } else if (playerScore < computerScore) {
+        console.log("You lose!");
+    } else {
+        console.log("It's draw!");
+    }
 
+    console.log(`Player ${playerScore} : Computer ${computerScore}`);
 }
 
 
@@ -55,17 +63,14 @@ function game() {
             computerScore ++;
         }
         console.log(`Player ${playerScore} : Computer ${computerScore}`)
-      
     }
-    
+    endScore(computerScore, playerScore);
 }
 
 
 game();
 
 
-// way to handel erros when youser type in
-// something else than rock paper scissors
 
 // final score print function
 
