@@ -37,7 +37,7 @@ function endScore(computerScore, playerScore) {
     if (playerScore > computerScore) {
         console.log("You Win!");
     } else if (playerScore < computerScore) {
-        console.log("You lose!");
+        console.log("The Computer wins!");
     } else {
         console.log("It's draw!");
     }
@@ -51,9 +51,7 @@ function game() {
     let playerScore = 0;
     for (let i = 0; i <= 4; i++) {
         let computerSelection = getComputerChoice();
-        console.log(computerSelection);
         let playerSelection = prompt("Chose your weapon: Rock, Paper, Scissors: ")
-        console.log(playerSelection);
         let result = gameRound(playerSelection, computerSelection);
         console.log(result[0]);
 
@@ -69,9 +67,12 @@ function game() {
 
 
 game();
+let restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
+while (restart != "no") {
+    game();
+    restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
+}
 
 
 
-// final score print function
-
-// asking to restart the game 
+// error handeling when user has wrong input??
