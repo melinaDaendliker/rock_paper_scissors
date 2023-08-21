@@ -8,54 +8,39 @@ function getComputerChoice() {
 function gameRound(playerSelection, computerSelection){
     // convert playerSelection to lower case
     playerSelection = playerSelection.toLowerCase();
-   
+    
     // check for draw
     if (playerSelection == computerSelection) {
-        return 2
-        
-    // player choice is rock 
+        return [ "It's a draw!", 2];
+    
+        // player choice is rock 
     } else if (playerSelection == "rock") {
         if (computerSelection == "scissors"){
-            return 1
-        } else {return 0 }
+            return ["You win! Rock beats Scissors.", 1]
+        } else {return ["You lose! Paper beats Rock.", 0]}
 
     // player choice is paper
     } else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
-            return 1
-        } else {return 0}
+            return ["You win! Paper beats Rock.", 1]
+        } else {return ["You lose! Scissors beat Paper.", 0]}
         
     // player choice is scissors
     } else if (playerSelection == "scissors") {
         if (computerSelection == "paper") {
-            return 1
-        } else {return 0 }
+            return ["You win! Scissors beat Paper", 1]
+        } else {return ["You lose! Rock beats Scissors.", 0]}
     }
 }
-
-function messagePrint(playerSelection, computerSelection, result) {
-    if (result == 2) {
-        console.log("It's a draw")
-    } else if (result = 1 && playerSelection != "scissors") {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}` )
-    } else if (result = 1 && playerSelection == "scissors") {
-        console.log(`You win! ${playerSelection} beat ${computerSelection}` )
-    } else if (result = 2 && computerSelection != "scissors") {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}` )
-    } else if (result = 2 && computerSelection =="scissors") {
-        console.log(`You lose! ${computerSelection} beat ${playerSelection}` )
-    }
-}
-
-
-
 
 function game() {
     for (let i = 0; i <= 4; i++) {
         let computerSelection = getComputerChoice();
+        console.log(computerSelection);
         let playerSelection = prompt("Chose your weapon: Rock, Paper, Scissors: ")
-        let result = (gameRound(playerSelection, computerSelection));
-        messagePrint(playerSelection, computerSelection, result);
+        console.log(playerSelection);
+        let result = gameRound(playerSelection, computerSelection);
+        console.log(result)
     }
 }
 
@@ -63,6 +48,9 @@ function game() {
 game();
 
 
-// user input
-// parametrs for wins to keep trak of it
-// something to repeat it till then 
+// way to handel erros when youser type in
+// something else than rock paper scissors
+
+// function for traking the score
+
+// asking to restart the game 
