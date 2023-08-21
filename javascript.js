@@ -25,7 +25,8 @@ function gameRound(playerSelection, computerSelection){
         if (computerSelection == "rock") {
             return "You win! Paper beats Rock."
         } else {return "You lose! Scissors beat Paper."}
-
+        
+        // player choice is scissors
     } else if (playerSelection == "scissors") {
         if (computerSelection == "paper") {
             return "You win! Scissors beat Paper"
@@ -34,12 +35,19 @@ function gameRound(playerSelection, computerSelection){
 }
 
 
-let playerSelection = "Scissors";
-console.log(playerSelection);
-let computerSelection = getComputerChoice();
-console.log(computerSelection);
-console.log(gameRound(playerSelection, computerSelection));
+function game() {
+    for (let i = 0; i <= 4; i++) {
+        let computerSelection = getComputerChoice();
+        console.log(computerSelection);
+        let playerSelection = prompt("Chose your weapon: Rock, Paper, Scissors: ")
+        console.log(playerSelection);
+        console.log(gameRound(playerSelection, computerSelection));
+    }
 
+}
+
+
+game();
 
 
 // user input
