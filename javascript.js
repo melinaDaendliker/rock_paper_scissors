@@ -4,7 +4,6 @@ function getComputerChoice() {
     return actions[randomNum];
 }
 
-
 function gameRound(playerSelection, computerSelection){
     // convert playerSelection to lower case
     playerSelection = playerSelection.toLowerCase();
@@ -33,15 +32,32 @@ function gameRound(playerSelection, computerSelection){
     }
 }
 
+
+function endScore(computerScore, playerScore) {
+
+}
+
+
 function game() {
+    let computerScore = 0;
+    let playerScore = 0;
     for (let i = 0; i <= 4; i++) {
         let computerSelection = getComputerChoice();
         console.log(computerSelection);
         let playerSelection = prompt("Chose your weapon: Rock, Paper, Scissors: ")
         console.log(playerSelection);
         let result = gameRound(playerSelection, computerSelection);
-        console.log(result)
+        console.log(result[0]);
+
+        if (result[1] == 1) {
+            playerScore ++;
+        } else if (result[1] == 0) {
+            computerScore ++;
+        }
+        console.log(`Player ${playerScore} : Computer ${computerScore}`)
+      
     }
+    
 }
 
 
@@ -51,6 +67,6 @@ game();
 // way to handel erros when youser type in
 // something else than rock paper scissors
 
-// function for traking the score
+// final score print function
 
 // asking to restart the game 
