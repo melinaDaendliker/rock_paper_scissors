@@ -33,6 +33,14 @@ button{
     width: 150px;
     font-size: 30px;
     margin: 20px;
+    transition: all 0.50s ease;
    
+}
+
+
+.pushed{
+    background-color: rgb(93, 189, 189);
+    transform: scale(1.1);
+    box-shadow: 0 0 1rem whitesmoke;
 }
 

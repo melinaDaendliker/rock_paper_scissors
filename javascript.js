@@ -66,6 +66,28 @@ function game() {
 }
 
 
+
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('pushed');
+  }
+
+
+function gamePlay(e) {
+    playerChoice = e.target.id;
+    const button = this.document.querySelector(`button#${playerChoice}`);
+    button.classList.add('pushed');
+    console.log(playerChoice);
+}
+
+
+window.addEventListener("click", gamePlay);
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
+
+ 
+  
+
 //game();
 //let restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
 //while (restart != "no") {
