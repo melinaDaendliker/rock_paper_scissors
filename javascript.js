@@ -2,17 +2,19 @@
 const gameMessage = document.querySelector('.game-message');
 const selectionMessage = document.querySelector('.selection-message')
 const buttons = document.querySelectorAll('button');
+const gameScreen = document.querySelector('.game-screen');
+const endScreen = document.querySelector('.end-screen');
+const body = document.querySelector('body');
 let scorePlayerSpan = document.querySelector('.player-score');
 let scoreComputerSpan = document.querySelector('.computer-score');
 
 let scorePlayer = 0;
 let scoreComputer = 0;
 
-// starting the game 
-window.addEventListener("click", gamePlay);
-buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
+// starting the game
 
-// make end  button interactable 
+buttons.forEach(button => button.addEventListener("click", gamePlay));
+buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
 
 
 // functions 
@@ -60,27 +62,22 @@ function countScore(result){
 }
 
 function makeConfetti() {
-    var myCanvas = document.createElement('canvas');
-        document.body.appendChild(myCanvas);
+    let myCanvas = document.createElement('canvas');
+    endScreen.appendChild(myCanvas);
 
-        var myConfetti = confetti.create(myCanvas, {
-            resize: true,
-            useWorker: true
+    var myConfetti = confetti.create(myCanvas, {
+        resize: true,
+        useWorker: true
         });
-        myConfetti({
-            particleCount: 100,
-            spread: 160,
-            startVelocity: 35
+    myConfetti({
+        particleCount: 100,
+        spread: 160,
+        startVelocity: 35
         });
 }
 
 function endScore(computerScore, playerScore) {
-    const gameScreen = document.querySelector('.game-screen');
     gameScreen.style.opacity = 0;
-    
-    // select div for end message
-    const endScreen = document.querySelector('.end-screen');
-    endScreen.classList.add('end-styling');
     
     // create play again button 
     const playAgainButton = document.createElement('button');
@@ -90,11 +87,10 @@ function endScore(computerScore, playerScore) {
     playAgainButton.addEventListener('click', restart);
    
     // create end message 
+    endScreen.classList.add('end-styling');
     const endMessage = document.createElement('p');
     endMessage.classList.add('endMessage');
     endScreen.appendChild(endMessage);
-   
-
    
     if (playerScore > computerScore) {
         endMessage.textContent = "You Win!";
@@ -102,15 +98,29 @@ function endScore(computerScore, playerScore) {
     } else if (playerScore < computerScore) {
         endMessage.textContent = "The Computer wins!";
     } 
-
-    // make button clickable 
     
 }
 
 function restart() {
-    alert('test');
-    // reset all the score variables
+
     // change styling back to normal 
+    gameScreen.style.opacity = 1;
+    const endMessage = document.querySelector('.endMessage');
+    endScreen.removeChild(endMessage);
+    const playAgainButton = document.querySelector('.playAgainButton');
+    endScreen.removeChild(playAgainButton);
+    
+    if (document.querySelector('canvas') != null) {
+        let myCanvas = document.querySelector('canvas')
+        endScreen.removeChild(myCanvas);}
+    
+    // reset all the score variables
+    gameMessage.textContent = "";
+    selectionMessage.textContent = "";
+    scorePlayerSpan.textContent = 0;
+    scoreComputerSpan.textContent = 0;
+    scorePlayer = 0;
+    scoreComputer = 0;
 }
 
 function removeTransition(e) {
@@ -123,7 +133,7 @@ function gamePlay(e) {
     let computerChoice = getComputerChoice(); 
 
     // makes the button flashy
-    const button = this.document.querySelector(`button#${playerChoice}`);
+    const button = document.querySelector(`button#${playerChoice}`);
     button.classList.add('pushed');
 
     // start the game round 
@@ -142,7 +152,7 @@ function gamePlay(e) {
     scoreComputerSpan.textContent = scoreComputer;
 
     // end the game
-    if (scoreComputer == 1 || scorePlayer == 1) {
+    if (scoreComputer == 5 || scorePlayer == 5) {
         endScore(scoreComputer, scorePlayer);
     
     }
