@@ -66,12 +66,12 @@ function game() {
 }
 
 
-game();
-let restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
-while (restart != "no") {
-    game();
-    restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
-}
+//game();
+//let restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
+//while (restart != "no") {
+//    game();
+//    restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
+//}
 
 
 
