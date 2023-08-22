@@ -45,26 +45,13 @@ function endScore(computerScore, playerScore) {
     console.log(`Player ${playerScore} : Computer ${computerScore}`);
 }
 
-
-function game() {
-    let computerScore = 0;
-    let playerScore = 0;
-    for (let i = 0; i <= 4; i++) {
-        let computerSelection = getComputerChoice();
-        let playerSelection = prompt("Chose your weapon: Rock, Paper, Scissors: ")
-        let result = gameRound(playerSelection, computerSelection);
-        console.log(result[0]);
-
-        if (result[1] == 1) {
-            playerScore ++;
-        } else if (result[1] == 0) {
-            computerScore ++;
-        }
-        console.log(`Player ${playerScore} : Computer ${computerScore}`)
+function countScore(result){
+    if (result==1){
+        scorePlayer ++; 
+    } else if (result==0) {
+        scoreComputer ++
     }
-    endScore(computerScore, playerScore);
 }
-
 
 function removeTransition(e) {
     if (e.propertyName !== 'transform') return;
@@ -88,16 +75,33 @@ function gamePlay(e) {
     // show what palyer and computer choice and win message
     selectionMessage.textContent = `Player : ${playerChoice}   vs   ${computerChoice} : Computer`;
     gameMessage.textContent = result[0];
-    
+
+    // count and display score
+    countScore(result[1])
+    scorePlayerSpan.textContent = scorePlayer;
+    scoreComputerSpan.textContent = scoreComputer;
+
+    // end the game
+    if (scoreComputer == 5 || scorePlayer == 5) {
+        endScore(scoreComputer, scorePlayer);
+    }
+
 }
 
+let scorePlayer = 0;
+let scoreComputer = 0;
 
-window.addEventListener("click", gamePlay);
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
+// selection of all needed elements
 const gameMessage = document.querySelector('.game-message');
 const selectionMessage = document.querySelector('.selection-message')
+const buttons = document.querySelectorAll('button');
+let scorePlayerSpan = document.querySelector('.player-score');
+let scoreComputerSpan = document.querySelector('.computer-score');
 
+
+// starting the game 
+window.addEventListener("click", gamePlay);
+buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
 
  
   
