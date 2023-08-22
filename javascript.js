@@ -14,6 +14,7 @@ buttons.forEach(button => button.addEventListener('transitionend', removeTransit
 
 // make end  button interactable 
 
+
 // functions 
 
 function getComputerChoice() {
@@ -77,23 +78,37 @@ function endScore(computerScore, playerScore) {
     const gameScreen = document.querySelector('.game-screen');
     gameScreen.style.opacity = 0;
     
-    // show end message
+    // select div for end message
     const endScreen = document.querySelector('.end-screen');
     endScreen.classList.add('end-styling');
+    
+    // create play again button 
+    const playAgainButton = document.createElement('button');
+    playAgainButton.classList.add('playAgainButton');
+    playAgainButton.textContent = "Play Again";
+    endScreen.appendChild(playAgainButton);
+    playAgainButton.addEventListener('click', restart);
+   
+    // create end message 
+    const endMessage = document.createElement('p');
+    endMessage.classList.add('endMessage');
+    endScreen.appendChild(endMessage);
+   
 
+   
     if (playerScore > computerScore) {
-        endScreen.textContent = "You Win!";
+        endMessage.textContent = "You Win!";
         makeConfetti();
     } else if (playerScore < computerScore) {
-        endScreen.textContent = "The Computer wins!";
+        endMessage.textContent = "The Computer wins!";
     } 
 
-    // show button 
-    const endButton =  document.querySelector('.end-button')
-    endButton.classList.add('end-button-styling')
+    // make button clickable 
+    
 }
 
 function restart() {
+    alert('test');
     // reset all the score variables
     // change styling back to normal 
 }
@@ -139,14 +154,3 @@ function gamePlay(e) {
 
  
   
-
-//game();
-//let restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
-//while (restart != "no") {
-//    game();
-//    restart = prompt("Do you want to restart the game (Yes/No)?").toLowerCase();
-//}
-
-
-
-// error handeling when user has wrong input??
