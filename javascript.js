@@ -66,24 +66,38 @@ function game() {
 }
 
 
-
 function removeTransition(e) {
     if (e.propertyName !== 'transform') return;
     e.target.classList.remove('pushed');
   }
 
-
 function gamePlay(e) {
-    playerChoice = e.target.id;
+    let playerChoice = e.target.id;
+    let computerChoice = getComputerChoice(); 
+
+    // makes the button flashy
     const button = this.document.querySelector(`button#${playerChoice}`);
     button.classList.add('pushed');
-    console.log(playerChoice);
+
+    // start the game round 
+    let result = gameRound(playerChoice, computerChoice);
+    
+
+    playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1);
+    computerChoice = computerChoice[0].toUpperCase() + computerChoice.slice(1);
+    // show what palyer and computer choice and win message
+    selectionMessage.textContent = `Player : ${playerChoice}   vs   ${computerChoice} : Computer`;
+    gameMessage.textContent = result[0];
+    
 }
 
 
 window.addEventListener("click", gamePlay);
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
+const gameMessage = document.querySelector('.game-message');
+const selectionMessage = document.querySelector('.selection-message')
+
 
  
   
