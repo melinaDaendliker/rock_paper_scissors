@@ -158,9 +158,3 @@ function gamePlay(e) {
     }
 
 }
-
-
-
-
- 
-  
