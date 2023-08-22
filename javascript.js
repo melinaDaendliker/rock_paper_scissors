@@ -12,6 +12,7 @@ let scoreComputer = 0;
 window.addEventListener("click", gamePlay);
 buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
 
+// make end  button interactable 
 
 // functions 
 
@@ -76,15 +77,25 @@ function endScore(computerScore, playerScore) {
     const gameScreen = document.querySelector('.game-screen');
     gameScreen.style.opacity = 0;
     
+    // show end message
     const endScreen = document.querySelector('.end-screen');
     endScreen.classList.add('end-styling');
-    
+
     if (playerScore > computerScore) {
         endScreen.textContent = "You Win!";
         makeConfetti();
     } else if (playerScore < computerScore) {
         endScreen.textContent = "The Computer wins!";
     } 
+
+    // show button 
+    const endButton =  document.querySelector('.end-button')
+    endButton.classList.add('end-button-styling')
+}
+
+function restart() {
+    // reset all the score variables
+    // change styling back to normal 
 }
 
 function removeTransition(e) {
@@ -116,9 +127,9 @@ function gamePlay(e) {
     scoreComputerSpan.textContent = scoreComputer;
 
     // end the game
-    if (scoreComputer == 5 || scorePlayer == 5) {
+    if (scoreComputer == 1 || scorePlayer == 1) {
         endScore(scoreComputer, scorePlayer);
-        
+    
     }
 
 }
