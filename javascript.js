@@ -1,3 +1,20 @@
+// selection of all needed elements
+const gameMessage = document.querySelector('.game-message');
+const selectionMessage = document.querySelector('.selection-message')
+const buttons = document.querySelectorAll('button');
+let scorePlayerSpan = document.querySelector('.player-score');
+let scoreComputerSpan = document.querySelector('.computer-score');
+
+let scorePlayer = 0;
+let scoreComputer = 0;
+
+// starting the game 
+window.addEventListener("click", gamePlay);
+buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
+
+
+// functions 
+
 function getComputerChoice() {
     const actions = ["rock", "paper", "scissors"];
     let randomNum = Math.floor(Math.random() * 3);
@@ -40,6 +57,21 @@ function countScore(result){
     }
 }
 
+function makeConfetti() {
+    var myCanvas = document.createElement('canvas');
+        document.body.appendChild(myCanvas);
+
+        var myConfetti = confetti.create(myCanvas, {
+            resize: true,
+            useWorker: true
+        });
+        myConfetti({
+            particleCount: 100,
+            spread: 160,
+            startVelocity: 35
+        });
+}
+
 function endScore(computerScore, playerScore) {
     const gameScreen = document.querySelector('.game-screen');
     gameScreen.style.opacity = 0;
@@ -49,13 +81,11 @@ function endScore(computerScore, playerScore) {
     
     if (playerScore > computerScore) {
         endScreen.textContent = "You Win!";
+        makeConfetti();
     } else if (playerScore < computerScore) {
         endScreen.textContent = "The Computer wins!";
     } 
 }
-
-
-
 
 function removeTransition(e) {
     if (e.propertyName !== 'transform') return;
@@ -86,26 +116,15 @@ function gamePlay(e) {
     scoreComputerSpan.textContent = scoreComputer;
 
     // end the game
-    if (scoreComputer == 1 || scorePlayer == 1) {
+    if (scoreComputer == 5 || scorePlayer == 5) {
         endScore(scoreComputer, scorePlayer);
+        
     }
 
 }
 
-let scorePlayer = 0;
-let scoreComputer = 0;
-
-// selection of all needed elements
-const gameMessage = document.querySelector('.game-message');
-const selectionMessage = document.querySelector('.selection-message')
-const buttons = document.querySelectorAll('button');
-let scorePlayerSpan = document.querySelector('.player-score');
-let scoreComputerSpan = document.querySelector('.computer-score');
 
 
-// starting the game 
-window.addEventListener("click", gamePlay);
-buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
 
  
   

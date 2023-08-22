@@ -48,15 +48,23 @@ button{
 
 .end-styling {
     position: fixed;
-    top: 45%;
-    left: 35%;
-    padding:  30px;
     font-size: 50px;
     font-weight: 900;
+    width: 400px;
+    text-align: center;
+    top: 50%;
+    left: 37.5%;
   }
 
 .end-button{
     background-color: rgb(3, 75, 75);
     border: 0;
 
+}
+
+canvas{
+    position: fixed;
+    padding: 100px;
+    top: 25%;
+    left: 25%;
 }
