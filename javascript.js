@@ -32,19 +32,6 @@ function gameRound(playerSelection, computerSelection){
     }
 }
 
-
-function endScore(computerScore, playerScore) {
-    if (playerScore > computerScore) {
-        console.log("You Win!");
-    } else if (playerScore < computerScore) {
-        console.log("The Computer wins!");
-    } else {
-        console.log("It's draw!");
-    }
-
-    console.log(`Player ${playerScore} : Computer ${computerScore}`);
-}
-
 function countScore(result){
     if (result==1){
         scorePlayer ++; 
@@ -52,6 +39,23 @@ function countScore(result){
         scoreComputer ++
     }
 }
+
+function endScore(computerScore, playerScore) {
+    const gameScreen = document.querySelector('.game-screen');
+    gameScreen.style.opacity = 0;
+    
+    const endScreen = document.querySelector('.end-screen');
+    endScreen.classList.add('end-styling');
+    
+    if (playerScore > computerScore) {
+        endScreen.textContent = "You Win!";
+    } else if (playerScore < computerScore) {
+        endScreen.textContent = "The Computer wins!";
+    } 
+}
+
+
+
 
 function removeTransition(e) {
     if (e.propertyName !== 'transform') return;
@@ -82,7 +86,7 @@ function gamePlay(e) {
     scoreComputerSpan.textContent = scoreComputer;
 
     // end the game
-    if (scoreComputer == 5 || scorePlayer == 5) {
+    if (scoreComputer == 1 || scorePlayer == 1) {
         endScore(scoreComputer, scorePlayer);
     }
 
